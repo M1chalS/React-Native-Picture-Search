@@ -1,14 +1,29 @@
 import {View, StyleSheet, Text} from 'react-native';
 import SearchBar from "../components/SearchBar";
-import PhotosList from "../components/PhotosList";
+import ImageList from "../components/ImageList";
 import { FontAwesome } from '@expo/vector-icons';
+import unsplash from "../api/unsplash";
+import {useState} from "react";
 
 const MainScreen = () => {
+    const [imageList, setImageList] = useState([]);
+
+    const searchImages = async (term) => {
+        const response = await unsplash.get('search/photos', {
+            params: {
+                query: term,
+                per_page: 20
+            }
+        });
+
+        setImageList(response.data.results);
+    }
+
     return (<View style={styles.main}>
         <Text style={styles.title}>Search for awesome images <FontAwesome name="image" size={24} color="black" />
         </Text>
-        <SearchBar />
-        <PhotosList />
+        <SearchBar searchImages={searchImages}/>
+        <ImageList images={imageList}/>
     </View>);
 };
 
