@@ -16,7 +16,7 @@ const SearchBar = ({searchImages}) => {
 
     return (<View>
             <View style={styles.inputContainer}>
-                <TextInput style={styles.input} value={term} onChangeText={handleChange}/>
+                <TextInput style={styles.input} value={term} onChangeText={handleChange} onSubmitEditing={handleClick}/>
                 <FontAwesome5 name="search" style={styles.icon}/>
             </View>
             <TouchableOpacity style={styles.button} onPress={handleClick}>
