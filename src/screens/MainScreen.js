@@ -12,7 +12,7 @@ const MainScreen = () => {
         const response = await unsplash.get('search/photos', {
             params: {
                 query: term,
-                per_page: 20
+                per_page: 40
             }
         });
 
@@ -20,8 +20,7 @@ const MainScreen = () => {
     }
 
     return (<View style={styles.main}>
-        <Text style={styles.title}>Search for awesome images <FontAwesome name="image" size={24} color="black" />
-        </Text>
+        <Text style={styles.title}>Search for awesome images <FontAwesome name="image" size={24} color="black" /></Text>
         <SearchBar searchImages={searchImages}/>
         <ImageList images={imageList}/>
     </View>);
@@ -33,6 +32,9 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
         padding: 10
+    },
+    main: {
+        flex: 1
     }
 });
 
